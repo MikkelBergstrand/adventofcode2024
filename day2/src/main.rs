@@ -29,8 +29,7 @@ fn is_valid_sol1(numbers: &[i32]) -> bool {
 
 fn is_valid_sol2(numbers: &[i32]) -> bool {
     for i in 0..(numbers.len()) {
-        let mut nos: Vec<i32> = numbers.to_vec();
-        nos.remove(i);
+        let nos: Vec<_> = numbers[..i].iter().chain(numbers[(i+1)..].iter()).collect();
 
         let differences: Vec<i32> = nos
             .windows(2)
