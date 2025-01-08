@@ -2,9 +2,9 @@ use std::fs;
 
 fn parse_lines() -> Vec<Vec<i32>> {
     fs::read_to_string("input.txt")
-        .unwrap() 
+        .unwrap()
         .lines()
-        .map(|line| { 
+        .map(|line| {
             line.split_whitespace()
                 .map(|x| x.parse().unwrap())
                 .collect()
@@ -13,9 +13,8 @@ fn parse_lines() -> Vec<Vec<i32>> {
 }
 
 fn validate_differences(differences: &[i32]) -> bool {
-    (differences.iter().all(|&x| x >= 0)  || 
-     differences.iter().all(|&x| x <= 0)) && 
-    !differences.iter().any(|&x| x.abs() < 1 || x.abs() > 3)
+    (differences.iter().all(|&x| x >= 0) || differences.iter().all(|&x| x <= 0))
+        && !differences.iter().any(|&x| x.abs() < 1 || x.abs() > 3)
 }
 
 fn is_valid_sol1(numbers: &[i32]) -> bool {
@@ -29,15 +28,15 @@ fn is_valid_sol1(numbers: &[i32]) -> bool {
 
 fn is_valid_sol2(numbers: &[i32]) -> bool {
     for i in 0..(numbers.len()) {
-        let nos: Vec<_> = numbers[..i].iter().chain(numbers[(i+1)..].iter()).collect();
-
-        let differences: Vec<i32> = nos
-            .windows(2)
-            .map(|slice| slice[1] - slice[0])
+        let nos: Vec<_> = numbers[..i]
+            .iter()
+            .chain(numbers[(i + 1)..].iter())
             .collect();
 
+        let differences: Vec<i32> = nos.windows(2).map(|slice| slice[1] - slice[0]).collect();
+
         if validate_differences(&differences) {
-            return true
+            return true;
         }
     }
 
@@ -46,12 +45,8 @@ fn is_valid_sol2(numbers: &[i32]) -> bool {
 
 fn main() {
     let lines = parse_lines();
-    
-    let count = lines
-        .iter()
-        .filter(|x| is_valid_sol2(x))
-        .count();
+
+    let count = lines.iter().filter(|x| is_valid_sol2(x)).count();
 
     dbg!(count);
-
 }
