@@ -70,9 +70,6 @@ fn main() {
             }
         }
     }
-    dbg!(&size);
-    dbg!(&beacons);
-
     let mut all_antinodes: HashMap<Pos, bool> = HashMap::new();
 
     for freq in beacons.keys() {
