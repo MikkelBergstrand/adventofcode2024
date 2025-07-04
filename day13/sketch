@@ -1,0 +1,29 @@
+a_x*x + b_x*y = t_x
+a_y*x + b_y*y = t_y
+
+a_x * a_y *x + a_y * b_x * y = t_x * a_y;
+a_x * a_y *x + a_x * b_y * y = t_y * a_x;
+
+
+y(67*94-22*34) = (5400*94-8400*34)
+
+y * (a_x*b_y-a_y*b_x) = t_y * a_x - t_x * a_y;
+
+
+
+x = (t_y - b_y*y) / a_y;
+
+
+
+tokens = x + 3*y;
+
+Task: minimize tokens.
+
+17x + 84y = 7870
+86x + 37y = 6450
+
+x + y = 100
+2x + 2y = 50;
+
+x + y = -50;
+
