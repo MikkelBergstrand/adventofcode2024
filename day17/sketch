@@ -1,0 +1,48 @@
+BST 4
+BXL 1
+CDV 5
+BXC 6
+BXL 4
+ADV 3
+OUT 5
+JNZ 0
+
+// C does not matter
+
+A := init;
+B := A % 8
+B := (B^0b1)  # flip LSB 
+C := A >> B; 
+B := B ^ C; 
+B := (B^0b100) # flip LSB 2
+A := A >> 3;
+PRINT (B % 8)
+JMP 0
+
+C := (A >> ((A%8)^1))
+B := (A%8)^C^4
+
+B := B^0b100
+   = B^C^0b100 
+   = B^(A >> B)^0b100
+   = (B^1)^(A >> (B^1))^0b100
+   = ((A%8)^1)^(A >> (A%8)^1)
+
+8 instructions.
+Code should jump 15 times, then exit.
+This implies A should be 0 on the 16th iteration.
+A / 8^16 = 0
+floor(A / 16777216) = 0
+=> 0 <= A <= 16777216)
+
+
+** XOR sidebar **
+1 XOR 0 = 1
+0 XOR 0 = 0
+So XOR-ing with 0 preserves the value
+1 XOR 1 = 0
+0 XOR 1 = 1
+XOR-ing with 1 flips the bit.
+Effect of X XOR 0b1 XOR 0b100 is then to
+flip bits at LSB and LSB-2  
+
